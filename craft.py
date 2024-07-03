@@ -4,13 +4,11 @@ import win32con
 
 def click(x, y):
     hWnd = win32gui.FindWindow(None, "LimbusCompany")
+    coords = win32gui.GetWindowRect(hWnd)
     lParam = win32api.MAKELONG(x, y)
 
-    hWnd1= win32gui.FindWindowEx(hWnd, None, None, None)
-    win32gui.SendMessage(hWnd1, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
-    win32gui.SendMessage(hWnd1, win32con.WM_LBUTTONUP, None, lParam)
+    hWnd1= win32gui.FindWindowEx(hWnd, None, None, None) # Fourth parameter can also be window name
+    win32gui.SendMessage(hWnd, win32con.WM_LBUTTONDOWN, win32con.MK_LBUTTON, lParam)
+    win32gui.SendMessage(hWnd, win32con.WM_LBUTTONUP, None, lParam)
 
-try:
-    click(100,100)
-except Exception as e:
-    print(e)
+click(30,30)
